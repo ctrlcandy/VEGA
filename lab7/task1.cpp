@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 
 int** createMatrix(int row, int col) 
 {
@@ -61,17 +61,17 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	std::cout << "Ââåäèòå ðàçìåð 1-îé ìàòðèöû:" << std::endl;
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ 1-Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹:" << std::endl;
 	int rowFirst, colFirst;
 	std::cin >> rowFirst >> colFirst;
-	std::cout << "Ââåäèòå ýëåìåíòû 1-îé ìàòðèöû:" << std::endl; 
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ 1-Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹:" << std::endl; 
 	int **firstMatrix = createMatrix(rowFirst, colFirst);
 	initializeMatrix(rowFirst, colFirst, firstMatrix);
 
-	std::cout << "Ââåäèòå ðàçìåð 2-îé ìàòðèöû:" << std::endl;
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ñ€Ð°Ð·Ð¼ÐµÑ€ 2-Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹:" << std::endl;
 	int rowSecond, colSecond;
 	std::cin >> rowSecond >> colSecond;
-	std::cout << "Ââåäèòå ýëåìåíòû 2-îé ìàòðèöû:" << std::endl;
+	std::cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ñ‹ 2-Ð¾Ð¹ Ð¼Ð°Ñ‚Ñ€Ð¸Ñ†Ñ‹:" << std::endl;
 	int** secondMatrix = createMatrix(rowSecond, colSecond);
 	initializeMatrix(rowSecond, colSecond, secondMatrix);
 
