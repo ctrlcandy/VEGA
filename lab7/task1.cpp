@@ -1,22 +1,22 @@
 ﻿#include <iostream>
 
-int** createMatrix(int row, int col) 
+int** create(int rows, int cols)
 {
-	int** matrix = new int* [row];
-	for (int i = 0; i < row; i++)
+	int** matrix = new int* [rows];
+	for (int i = 0; i < rows; i++)
 	{
-		matrix[i] = new int[col];
+		matrix[i] = new int[cols];
 	}
 
 	return matrix;
 }
 
-void initializeMatrix (int row, int col, int **matrix)
+void initialize(int rows, int cols, int** matrix)
 {
 	int num;
-	for (int i = 0; i < row; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		for (int j = 0; j < col; j++)
+		for (int j = 0; j < cols; j++)
 		{
 			std::cin >> num;
 			matrix[i][j] = num;
@@ -24,58 +24,89 @@ void initializeMatrix (int row, int col, int **matrix)
 	}
 }
 
-void matrixMultiplication(int rowFirst, int colFirst, int rowSecond, int colSecond, int** firstMatrix, int** secondMatrix)
+void print(int rows, int cols, int** matrix)
 {
-	if (colFirst != rowSecond)
-	{
-		std::cout << "Error" << std::endl;
+	if (matrix != nullptr) {
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
+			{
+				std::cout << matrix[i][j] << " ";
+			}
+			std::cout << "\n";
+		}
 	}
 	else
 	{
-		int length = colFirst;
-		int row = rowFirst;
-		int col = colSecond;
+		std::cout << "Error";
+	}
+}
 
-		int** newMatrix = new int* [row];
-		for (int i = 0; i < row; i++)
-			newMatrix[i] = new int[col];
-
-		for (int i = 0; i < row; i++) 
+void remove(int rows, int** matrix)
+{
+	if (matrix != nullptr)
+	{
+		for (int i = 0; i < rows; i++)
 		{
-			for (int j = 0; j < col; j++) 
+			delete[] matrix[i];
+		}
+		delete[] matrix;
+	}
+}
+
+int** multiply(int rowsFirst, int colsFirst, int rowsSecond, int colsSecond, int** firstMatrix, int** secondMatrix)
+{
+	if (colsFirst != rowsSecond)
+	{
+		return nullptr;
+	}
+	else
+	{
+		int length = colsFirst;
+		int rows= rowsFirst;
+		int cols = colsSecond;
+
+		int** newMatrix = create(rows, cols);
+
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < cols; j++)
 			{
 				newMatrix[i][j] = 0;
-				for (int k = 0; k < length; k++) 
+				for (int k = 0; k < length; k++)
 				{
 					newMatrix[i][j] += firstMatrix[i][k] * secondMatrix[k][j];
 				}
-				std::cout << newMatrix[i][j] << " ";
 			}
 		}
-	}	
-
+		return newMatrix;
+	}
 }
-
 
 int main()
 {
 	setlocale(LC_ALL, "Russian");
 
 	std::cout << "Введите размер 1-ой матрицы:" << std::endl;
-	int rowFirst, colFirst;
-	std::cin >> rowFirst >> colFirst;
-	std::cout << "Введите элементы 1-ой матрицы:" << std::endl; 
-	int **firstMatrix = createMatrix(rowFirst, colFirst);
-	initializeMatrix(rowFirst, colFirst, firstMatrix);
+	int rowsFirst, colsFirst;
+	std::cin >> rowsFirst >> colsFirst;
+	std::cout << "Введите элементы 1-ой матрицы:" << std::endl;
+	int** firstMatrix = create(rowsFirst, colsFirst);
+	initialize(rowsFirst, colsFirst, firstMatrix);
 
 	std::cout << "Введите размер 2-ой матрицы:" << std::endl;
-	int rowSecond, colSecond;
-	std::cin >> rowSecond >> colSecond;
+	int rowsSecond, colsSecond;
+	std::cin >> rowsSecond >> colsSecond;
 	std::cout << "Введите элементы 2-ой матрицы:" << std::endl;
-	int** secondMatrix = createMatrix(rowSecond, colSecond);
-	initializeMatrix(rowSecond, colSecond, secondMatrix);
+	int** secondMatrix = create(rowsSecond, colsSecond);
+	initialize(rowsSecond, colsSecond, secondMatrix);
 
-	matrixMultiplication(rowFirst, colFirst, rowSecond, colSecond, firstMatrix, secondMatrix);
-	
+	int** newMatrix = multiply(rowsFirst, colsFirst, rowsSecond, colsSecond, firstMatrix, secondMatrix);
+	print(rowsFirst, colsSecond, newMatrix);
+
+	remove(rowsFirst, newMatrix);
+	remove(rowsFirst, firstMatrix);
+	remove(rowsSecond, secondMatrix);
+
 	return 0;
 }
