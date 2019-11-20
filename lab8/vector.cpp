@@ -1,6 +1,8 @@
 ﻿#include <iostream>
 #include <cassert>
 
+#include "vector.h"
+
 static int* data = nullptr;
 static size_t size = 0;
 static size_t capacity = 0;
