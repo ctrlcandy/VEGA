@@ -1,9 +1,6 @@
 ﻿#include <iostream>
 #include <cassert>
 
-#include "vector.h"
-
-
 static int* data = nullptr;
 static size_t size = 0;
 static size_t capacity = 0;
@@ -44,13 +41,13 @@ size_t getCapacity()
 	return capacity;
 }
 
- void append(int value)
+void append(int value)
 {
-	 reserve(size + 1);
+	reserve(size + 1);
 
-	 data[size] = value;
-	 size++;
-} 
+	data[size] = value;
+	size++;
+}
 
 void append(int* array, size_t count)
 {
@@ -65,6 +62,7 @@ void insert(size_t index, int value)
 	for (size_t i = size; i > index; i--)
 		data[i] = data[i - 1];
 
+	size++;
 	data[index] = value;
 }
 
@@ -72,9 +70,11 @@ void erase(size_t index)
 {
 	for (size_t i = index; i < size; i++)
 		data[i] = data[i + 1];
+
+	size--;
 }
 
- int indexOf(int value)
+int indexOf(int value)
 {
 	int index = -1;
 	for (size_t i = 0; i < size; i++) {
@@ -82,10 +82,10 @@ void erase(size_t index)
 			return i;
 	}
 	return -1;
-} 
+}
 
 void squeeze()
-{ 
+{
 	if (size == 0)
 		delete[] data;
 	else
@@ -110,5 +110,5 @@ void print()
 	for (size_t i = 0; i < size - 1; i++)
 		std::cout << getValue(i) << ", ";
 
-	std::cout << getValue(size - 1);
+	std::cout << getValue(size - 1) << "\n";
 }
