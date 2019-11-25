@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 
 #include "vector.h"
 
@@ -42,7 +42,7 @@ int main()
 	return 0;
 }
 
-// Вывод:
+// Р’С‹РІРѕРґ:
 // 
 // append: 
 // value: 0 size: 1 capacity: 1
